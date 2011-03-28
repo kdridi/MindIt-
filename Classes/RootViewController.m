@@ -7,6 +7,7 @@
 //
 
 #import "RootViewController.h"
+#import "EntryCreateViewController.h"
 
 
 @implementation RootViewController
@@ -15,14 +16,31 @@
 #pragma mark -
 #pragma mark View lifecycle
 
-/*
 - (void)viewDidLoad {
     [super viewDidLoad];
 
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+	
+	{
+		UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(showCreationFormView:)];
+		self.navigationItem.leftBarButtonItem = item;
+		[item release];
+	}
+	
+	self.navigationItem.rightBarButtonItem = self.editButtonItem;
+	self.navigationItem.title = @"Entries";
+}	
+
+- (void) showCreationFormView:(id) sender {
+	NSLog(@"%@", sender);
+
+	EntryCreateViewController *detailViewController = [[EntryCreateViewController alloc] initWithNibName:@"EntryCreateViewController" bundle:nil];
+//	detailViewController.navigationController = self.navigationController;
+
+	// Pass the selected object to the new view controller.
+	[self.navigationController pushViewController:detailViewController animated:YES];
+	[detailViewController release];
 }
-*/
 
 /*
 - (void)viewWillAppear:(BOOL)animated {
